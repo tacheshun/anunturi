@@ -1,0 +1,2 @@
+<?php
+//database class
