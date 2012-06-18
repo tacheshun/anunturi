@@ -11,13 +11,13 @@ class Anunt {
 		return self::find_by_sql("SELECT * FROM ".self::$table_name);
   }
   
-  public static function find_by_id($id=0) {
+    public static function find_by_id($id=0) {
 	  global $database;
     $result_array = self::find_by_sql("SELECT * FROM ".self::$table_name." WHERE id=".$database->escape_value($id)." LIMIT 1");
 		return !empty($result_array) ? array_shift($result_array) : false;
   }
   
-  public static function find_by_sql($sql="") {
+    public static function find_by_sql($sql="") {
     global $database;
     $result_set = $database->query($sql);
     $object_array = array();
@@ -45,13 +45,10 @@ class Anunt {
 		return $object;
 	}
 	private function has_attribute($attribute) {
-	  // We don't care about the value, we just want to know if the key exists
-	  // Will return true or false
 	  return array_key_exists($attribute, $this->attributes());
 	}
 
 	protected function attributes() { 
-		// return an array of attribute names and their values
 	  $attributes = array();
 	  foreach(self::$db_fields as $field) {
 	    if(property_exists($this, $field)) {
@@ -64,8 +61,6 @@ class Anunt {
 	protected function sanitized_attributes() {
 	  global $database;
 	  $clean_attributes = array();
-	  // sanitize the values before submitting
-	  // Note: does not alter the actual value of each attribute
 	  foreach($this->attributes() as $key => $value){
 	    $clean_attributes[$key] = $database->escape_value($value);
 	  }

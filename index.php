@@ -59,14 +59,13 @@
 
  <?php
 
- $data = $database->escape_value(" SELECT * FROM anunturi ");
+ $data = $database->escape_value(" SELECT * FROM anunturi ORDER BY creat_la DESC ");
  $data .= $database->escape_value(" LIMIT {$per_page} ");
  $data .= $database->escape_value(" OFFSET {$pagination->offset()}");
  $anunturi = Anunt::find_by_sql($data);
 
  $result_set = $database->query($data);
  while ($row = $database->fetch_array($result_set)) {
- 	printf ("<strong>" . $row['id'] . " </strong>");
 	printf ("<h4>" . ucfirst($row['titlu']) . " </h4><br>");
 	printf ("<em>" . ucfirst($row['descriere']) . "</em><br>");
 	printf ("<em>" . $row['creat_la'] . "</em><br>");
@@ -74,31 +73,33 @@
 }
 
 ?>
-<div id="pagination" style="clear: both;">
+<div class="pagination" style="clear: both;">
 <?php
 	if($pagination->total_pages() > 1) {
 		
 	if($pagination->has_previous_page()) { 
       echo "<a href=\"index.php?page=";
       echo $pagination->previous_page();
-      echo "\">&laquo; Previous</a> "; 
+      echo "\">&laquo; Anterioarele</a> "; 
     }
-
+    ?>
+    <ul>
+    <?php
 		for($i=1; $i <= $pagination->total_pages(); $i++) {
 			if($i == $page) {
-				echo " <span class=\"selected\">{$i}</span> ";
+				echo " <li class=\"active\"><a href='#'>{$i}</a></li> ";
 			} else {
-				echo " <a href=\"index.php?page={$i}\">{$i}</a> "; 
+				echo " <li><a href=\"index.php?page={$i}\">{$i}</a></li> "; 
 			}
 		}
 
 		if($pagination->has_next_page()) { 
-			echo " <a href=\"index.php?page=";
+			echo " <li><a href=\"index.php?page=";
 			echo $pagination->next_page();
-			echo "\">Next &raquo;</a> "; 
-    }
-		
-	}
+			echo "\">Urmatoarele &raquo;</a> </li>"; 
+    } ?>
+		</ul>
+<?php	}
 
 ?>
 </div>
