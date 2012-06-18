@@ -1,10 +1,7 @@
-<?php require_once 'includes/paginator.php'; ?>
+<?php require_once("includes/paginator.php"); ?>
 <?php require_once("includes/database.php"); ?>
-<?php 
-// Set the error reporting level
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-?>
+<?php require_once("includes/anunt.php"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -45,24 +42,66 @@ ini_set("display_errors", 1);
               <li><a href="#all">Toate Anunturile</a></li>
 <!--               <li><a href="#contact">Contact</a></li>-->            
 		</ul>
+
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
  <div class="container">
+ 	<span><h1 class="topdescr">Anunturi promovate</h1></span>
+ <?php
+ 	$page = !empty($_GET['page']) ? (int)$_GET['page'] : 1;
+ 	$per_page = 10;
+ 	$total_count = Anunt::count_all();
+ 	$pagination = new Pagination($page, $per_page, $total_count);
 
-      <h1>Anunturi promovate</h1>
+ ?>  
+
  <?php
 
- $data = $database->escape_value("SELECT * FROM anunturi");
+ $data = $database->escape_value(" SELECT * FROM anunturi ");
+ $data .= $database->escape_value(" LIMIT {$per_page} ");
+ $data .= $database->escape_value(" OFFSET {$pagination->offset()}");
+ $anunturi = Anunt::find_by_sql($data);
+
  $result_set = $database->query($data);
  while ($row = $database->fetch_array($result_set)) {
-	printf ("<strong>Titlu: </strong>" . $row['titlu'] . "<br>");
-	printf ("<strong>Descriere: </strong>" . $row['descriere'] . "<br>");
+ 	printf ("<strong>" . $row['id'] . " </strong>");
+	printf ("<h4>" . ucfirst($row['titlu']) . " </h4><br>");
+	printf ("<em>" . ucfirst($row['descriere']) . "</em><br>");
+	printf ("<em>" . $row['creat_la'] . "</em><br>");
 	printf ("<hr>");
 }
 
 ?>
+<div id="pagination" style="clear: both;">
+<?php
+	if($pagination->total_pages() > 1) {
+		
+	if($pagination->has_previous_page()) { 
+      echo "<a href=\"index.php?page=";
+      echo $pagination->previous_page();
+      echo "\">&laquo; Previous</a> "; 
+    }
+
+		for($i=1; $i <= $pagination->total_pages(); $i++) {
+			if($i == $page) {
+				echo " <span class=\"selected\">{$i}</span> ";
+			} else {
+				echo " <a href=\"index.php?page={$i}\">{$i}</a> "; 
+			}
+		}
+
+		if($pagination->has_next_page()) { 
+			echo " <a href=\"index.php?page=";
+			echo $pagination->next_page();
+			echo "\">Next &raquo;</a> "; 
+    }
+		
+	}
+
+?>
+</div>
     </div> <!-- /container -->
 
     <!-- Le javascript

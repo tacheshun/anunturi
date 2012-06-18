@@ -52,7 +52,7 @@ class Database {
   }
   
   public function num_rows($result_set) {
-   return mysql_num_rows($result_set);
+    return mysql_num_rows($result_set);
   }
   
   public function insert_id() {
@@ -64,16 +64,16 @@ class Database {
     return mysql_affected_rows($this->connection);
   }
 
-	private function confirm_query($result) {
+  private function confirm_query($result) {
 		if (!$result) {
 	    $output = "Database query failed: " . mysql_error() . "<br /><br />";
 	    
 	    die( $output );
 		}
 	}
+  
 }
 
 $database = new Database();
-
 
 //end of file database.php; location: /includes
