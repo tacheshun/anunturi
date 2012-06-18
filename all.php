@@ -38,72 +38,38 @@
           <a class="brand" href="#">Anunturi</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="all.php">Toate Anunturile</a></li>
-<!--               <li><a href="#contact">Contact</a></li>-->            
+              <li><a href="index.php">Home</a></li>
+              <li class="active"><a href="">Toate Anunturile</a></li>          
 		</ul>
 
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
- <div class="container">
- <h1>Anunturi</h1><br />
- <?php
- 	$page = !empty($_GET['page']) ? (int)$_GET['page'] : 1;
- 	$per_page = 10;
- 	$total_count = Anunt::count_all();
- 	$pagination = new Pagination($page, $per_page, $total_count);
- ?>  
+<div class="container">
+
+     <h1>Toate anunturile</h1><br />
 
  <?php
 
- $data = $database->escape_value(" SELECT * FROM anunturi ORDER BY is_promoted DESC, creat_la DESC");
- $data .= $database->escape_value(" LIMIT {$per_page} ");
- $data .= $database->escape_value(" OFFSET {$pagination->offset()}");
+ $data = $database->escape_value("SELECT * FROM anunturi ORDER BY is_promoted DESC, is_promoted_top DESC, creat_la DESC ");
 
- $anunturi = Anunt::find_by_sql( $data );
-
- $result_set = $database->query( $data );
+ $result_set = $database->query($data);
 
  while ($row = $database->fetch_array($result_set)) {
-	echo ("<h3>" . ucfirst($row['titlu']) . " </h3><br>");
-	echo ("<em>" . ucfirst($row['descriere']) . "</em><br>");
-	echo ("<em>Adaugat la <strong>" . $row['creat_la'] . "</strong></em><br>");
-	echo ("<hr>");
+ 
+  echo ("<h3> " . ucfirst($row['titlu']) . "</h3><br>");
+   
+  echo ("<em>" . ucfirst($row['descriere']) . "</em><br>");
+  echo ("<em>Adaugat la <strong>" . $row['creat_la'] . "</strong></em><br>");
+  echo ("<hr>");
+
 }
 
 ?>
-<div class="pagination" style="clear: both;">
-	<ul>
-<?php
-	if($pagination->total_pages() > 1) {
-		
-	if($pagination->has_previous_page()) { 
-      echo "<li><a href=\"index.php?page=";
-      echo $pagination->previous_page();
-      echo "\">&laquo; Anterioarele</a> </li>"; 
-    }
-		for($i=1; $i <= $pagination->total_pages(); $i++) {
-			if($i == $page) {
-				echo " <li class=\"active\"><a href='#'>{$i}</a></li> ";
-			} else {
-				echo " <li><a href=\"index.php?page={$i}\">{$i}</a></li> "; 
-			}
-		}
 
-		if($pagination->has_next_page()) { 
-			echo " <li><a href=\"index.php?page=";
-			echo $pagination->next_page();
-			echo "\">Urmatoarele &raquo;</a> </li>"; 
-    } ?>
-		</ul>
-<?php	}
+   </div> <!-- /container -->
 
-?>
- </div>
- 
-</div> <!-- /container -->
 
     <!-- Le javascript
     ================================================== -->
