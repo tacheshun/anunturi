@@ -1,4 +1,4 @@
-Ai o lista de cateva zeci de anunturi (poti folosi http://www.generatedata.com/#generator ca sa populezi usor tabela). 
+Ai o lista de cateva zeci de anunturi. 
 Basic: afisezi titlu/descriere.
 Anunturile trebuiesc afisate cate 10 pe pagina, invers cronologic.
 
@@ -7,4 +7,3 @@ Anunturile au 2 tipuri de promovare:
 - topul tuturor listarilor exceptand prima pagina (sunt afisate separat, inaintea celor 10 care apar in mod normal)
 
 Aceste top-uri tin cont de cele mai recente promovari (trecand in fata).
-Nu vrem CMS sau alte tool-uri, ci doar pagina de afisare cu navigarea necesara verificarii acestor topuri.
