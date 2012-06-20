@@ -9,7 +9,7 @@
     <title>Anunturi promovate</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="Marius Costache - @tacheshun">
 
     <!-- Le styles -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">

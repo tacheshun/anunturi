@@ -6,7 +6,5 @@ Anunturile au 2 tipuri de promovare:
 - topul primei pagini (sunt incluse in cele 10 anunturi afisate pe pagina, pot trece pe a doua daca sunt mai mult de 10)
 - topul tuturor listarilor exceptand prima pagina (sunt afisate separat, inaintea celor 10 care apar in mod normal)
 
-Promovarea (de orice tip) unui anunt se face pe intervale de 24 de ore.
-
 Aceste top-uri tin cont de cele mai recente promovari (trecand in fata).
 Nu vrem CMS sau alte tool-uri, ci doar pagina de afisare cu navigarea necesara verificarii acestor topuri.
