@@ -1,4 +1,4 @@
-This is a small little app that retrive a list of ads from a database + pagination + Twitter Bootstrap.
+This is a small little app that retrive a list of ads from a database with php5 oop + pagination + Twitter Bootstrap.
 
 Set up
 
@@ -8,5 +8,4 @@ Thats's it.
 
 
 Licence:
-
-MIT Licence.
+Public domain
