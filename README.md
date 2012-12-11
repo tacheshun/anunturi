@@ -8,4 +8,4 @@ Thats's it.
 
 
 Licence:
-TBA
+MIT
