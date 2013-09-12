@@ -1,6 +1,5 @@
-<?php require_once("includes/paginator.php"); ?>
-<?php require_once("includes/database.php"); ?>
-<?php require_once("includes/anunt.php"); ?>
+<?php require_once("includes/Anunt.php"); ?>
+<?php require_once("includes/Paginator.php"); ?>
 
 <!DOCTYPE html>
 <html lang="en">

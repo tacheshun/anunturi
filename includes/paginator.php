@@ -36,4 +36,4 @@ class Pagination {
 	}
 }
 
-//end of file paginator.php; location: /includes
+//end of file Paginator.php; location: /includes

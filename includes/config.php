@@ -5,4 +5,4 @@ define("DB_USER", "root");
 define("DB_PASS", "");
 define("DB_NAME", "screening");
 
-//end of file config.php; location: /includes
+//end of file Config.php; location: /includes
